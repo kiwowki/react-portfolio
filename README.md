@@ -77,7 +77,7 @@ Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
 
 `git commit -m "커밋제목"`
 
-`git push -u origin master`
+`git push -u origin main`
 
 </details>
 
