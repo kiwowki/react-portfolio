@@ -12,7 +12,10 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
+    "react-scroll-trigger": "^0.6.14",
     "sass": "^1.69.5",
+    "scrolltrigger": "^1.0.1",
+    "split-type": "^0.3.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

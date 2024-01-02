@@ -14,8 +14,8 @@ const HomeView = () => {
     <>
       <Skip />
       <Header />
+      <Intro />
       <Main>
-        <Intro />
         <About />
         <Works />
         <Skills />
