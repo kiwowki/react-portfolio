@@ -12,7 +12,7 @@ const Works = () => {
         <section id="works">
             <h2 className="blind">works</h2>
             <div className="works_start"></div>
-            <div id="work1" className="work w1">
+            {/* <div id="work1" className="work w1">
                 <div className="work_wrap">
                     <div className="top">
                         <h2 className="title">YOUTUBE API</h2>
@@ -135,7 +135,7 @@ const Works = () => {
                         <Link to="#">site view</Link>
                     </nav>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 };

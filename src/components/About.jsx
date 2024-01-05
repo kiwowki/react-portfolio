@@ -2,21 +2,266 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { aboutTop } from "../constants/index";
+import { aboutMid } from "../constants/index";
+
+import { aboutT1 } from "../constants/index";
+import { aboutT2 } from "../constants/index";
+import { aboutT3 } from "../constants/index";
+
+// import { aboutImg } from "../utils/aboutImg.js";
+
+import SplitType from "split-type";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const About = () => {
-    // const aboutTextRef = useRef();
+const photoRows = [0, 1, 2]; // 세 줄의 사진을 표현합니다.
+const photosPerRow = [0, 1, 2, 3, 4]; // 각 줄에 5개의 사진이 있습니다.
 
-    useEffect(() => {}, []);
+const About = () => {
+    useEffect(() => {
+        const targetsT1 = gsap.utils.toArray(".about_text_top .t1.split");
+        const targetsT2 = gsap.utils.toArray(".about_text_top .t2.split");
+        const targetsT3 = gsap.utils.toArray(".about_text_top .t3.split");
+
+        targetsT1.forEach((target) => {
+            let splitClient = new SplitType(target, {
+                type: "lines, words, chars",
+            });
+            let chars = splitClient.chars;
+
+            gsap.from(chars, {
+                yPercent: 50,
+                opacity: 0,
+                rotation: 10,
+                duration: 0.3,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: target,
+                    start: "top bottom",
+                    end: "+400",
+                },
+            });
+        });
+        targetsT2.forEach((target) => {
+            let splitClient = new SplitType(target, {
+                type: "lines, words, chars",
+            });
+            let chars = splitClient.chars;
+
+            gsap.from(chars, {
+                yPercent: 50,
+                opacity: 0,
+                rotation: 10,
+                duration: 0.1,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: target,
+                    start: "top bottom",
+                    end: "+400",
+                },
+            });
+        });
+        targetsT3.forEach((target) => {
+            let splitClient = new SplitType(target, {
+                type: "lines, words, chars",
+            });
+            let chars = splitClient.chars;
+
+            gsap.from(chars, {
+                yPercent: 50,
+                opacity: 0,
+                rotation: 10,
+                duration: 0.5,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: target,
+                    start: "top bottom",
+                    end: "+400",
+                },
+            });
+        });
+
+        const copies = document.querySelectorAll(".background-copy");
+
+        const numCopies = copies.length;
+
+        window.addEventListener("scroll", function () {
+            // 현재 스크롤 위치 구하기
+            const scrollPosition = window.scrollY;
+
+            // 스크롤 위치에 따라 특정 비율의 이미지를 보여주기
+            for (let i = 0; i < numCopies; i++) {
+                if (i === 0) {
+                    // nth-child(1)일 경우에는 고정으로 나오도록 설정
+                    copies[i].style.opacity = 1;
+                } else {
+                    const offsetAdjustment = 450;
+
+                    // 다른 이미지들은 스크롤 위치에 따라 특정 비율의 효과 적용
+                    const percentage =
+                        ((scrollPosition -
+                            (copies[i].offsetTop + offsetAdjustment)) /
+                            window.innerHeight) *
+                        100;
+                    copies[i].style.opacity = Math.max(
+                        0,
+                        Math.min(1, (percentage - (i - 1) * 20) / 20)
+                    );
+                }
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        const hide = (item) => {
+            gsap.set(item, { autoAlpha: 0 }); // gsap에서 css 정하기
+        };
+
+        const animate = (item) => {
+            let x = 0;
+            let y = 0;
+            let delay = item.dataset.delay; // 속성값 만들어 둠
+
+            if (item.classList.contains("reveal_LTR")) {
+                // 클래스에 그것이 포함되어있는지 찾기
+                x = -100;
+                y = 0;
+            } else if (item.classList.contains("reveal_BTT")) {
+                x = 0;
+                y = 100;
+            } else if (item.classList.contains("reveal_TTB")) {
+                x = 0;
+                y = -100;
+            } else {
+                // 기본 리빌 RTL
+                x = 100;
+                y = 0;
+            }
+
+            gsap.fromTo(
+                item, // 전과 현재의 위치 계산후 둘 다 줌
+                { autoAlpha: 0, x: x, y: y },
+                {
+                    autoAlpha: 1,
+                    x: 0,
+                    y: 0,
+                    delay: delay,
+                    duration: 1.25,
+                    overwrite: "auto",
+                    ease: "expo",
+                }
+            ); // 컴 느릴때 실행 중복되지않게 오토로 설정
+        };
+
+        gsap.utils.toArray(".reveal").forEach((item) => {
+            hide(item);
+
+            ScrollTrigger.create({
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                onEnter: () => {
+                    animate(item);
+                }, // 콜백함수
+            });
+        });
+
+        gsap.utils.toArray(".about_text_midle .split").forEach((item) => {
+            gsap.to(item, {
+                yPercent: -100,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 0.5,
+                },
+            });
+        });
+        gsap.utils
+            .toArray(
+                "#about .about_text_bottom .t6, #about .about_text_bottom .t7"
+            )
+            .forEach((item) => {
+                gsap.to(item, {
+                    yPercent: -50,
+                    duration: 0.5,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 0.5,
+                    },
+                });
+            });
+    }, []);
+
+    useEffect(() => {
+        // const ani7 = gsap.timeline();
+        // ani7.fromTo(
+        //     "#section3 .t1",
+        //     { autoAlpha: 1, scale: 0.5 },
+        //     { autoAlpha: 1, scale: 1, duration: 1 }
+        // )
+        //     .from(
+        //         "#section3 .p1 .about_photos_img",
+        //         { autoAlpha: 1, duration: 1 },
+        //         "-=1"
+        //     )
+        //     .fromTo(
+        //         "#section3 .t2",
+        //         { autoAlpha: 0, scale: 0.5 },
+        //         { autoAlpha: 1, scale: 1, duration: 1 },
+        //         "+=1"
+        //     )
+        //     .from(
+        //         "#section3 .p2 .about_photos_img",
+        //         { autoAlpha: 0, duration: 1 },
+        //         "-=1"
+        //     )
+        //     .fromTo(
+        //         "#section3 .t3",
+        //         { autoAlpha: 0, scale: 0.5 },
+        //         { autoAlpha: 1, scale: 1, duration: 1 },
+        //         "+=1"
+        //     )
+        //     .from(
+        //         "#section3 .p3 .about_photos_img",
+        //         { autoAlpha: 0, duration: 1 },
+        //         "-=1"
+        //     );
+
+        //     ScrollTrigger.create({
+        //         animation: ani7,
+        //         trigger: "#section3",
+        //         start: "top top",
+        //         end: "+=5000",
+        //         scrub: true,
+        //         pin: true,
+        //         markers: true,
+        //     });
+
+        // return () => {
+        //     ScrollTrigger.getAll().forEach((ST) => ST.kill());
+        // };
+    }, []);
 
     return (
         <section id="about">
             <h2 className="blind">about</h2>
             <div className="about_wrap">
                 <div className="about_text_top">
-                    <div className="text t1 split">hey,</div>
-                    <div className="text t2 split">Creative</div>
-                    <div className="text t3 split">Developer</div>
+                    {aboutTop.map((text, index) => {
+                        return (
+                            <div
+                                className={`text t${index + 1} split`}
+                                key={index}
+                            >
+                                {text}
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className="about_img">
                     <div className="background-container">
@@ -28,147 +273,90 @@ const About = () => {
                     </div>
                 </div>
                 <div className="about_text_midle">
-                    <div className="text t4 split">enhance skills</div>
-                    <div className="text t5 split">passionate</div>
+                    {aboutMid.map((text, index) => {
+                        return (
+                            <div
+                                className={`text t${index + 4} split`}
+                                key={index}
+                            >
+                                {text}
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className="about_text_bottom">
                     <div className="text t6">
-                        <h3 className="split2">fullstack developer</h3>
-                        <p className="split3">
-                            {/* <MaskText />
-                            <MaskText />
-                            <MaskText />
-                            <MaskText />
-                            <MaskText /> */}
-                            경찰법학을 전공으로 공부하였고, 다양한 분야의 업무를
-                            하며 나의
-                            <br />
-                            적성에 맞는 일을 찾고자 노력을 했습니다.
-                            <br />
-                            수 년간 공무원 준비와 생계유지를 병행하다가
-                            국비지원학원에서 약 6개월간의 여정을 시작했습니다.
-                            <br />
-                            아직은 서툴고 부족하다는 점을 알고 있습니다.
+                        <h3 className="split2 reveal reveal_RTL">
+                            fullstack developer
+                        </h3>
+                        <p className="split3 reveal reveal_RTL">
+                            {aboutT1.map((phrase, index) => {
+                                return (
+                                    <span key={index}>
+                                        {phrase}
+                                        <br />
+                                    </span>
+                                );
+                            })}
                         </p>
                     </div>
                     <div className="text t7">
-                        <h3 className="split2">enhance skills</h3>
-                        <p className="split3">
-                            개발자의 세계에서의 새로운 시작은 제게 있어서 큰
-                            도전이자 기회입니다.
-                            <br />
-                            과거의 경험을 통해 진정으로 하고 싶은 일이
-                            무엇인지를 고민하던 중,
-                            <br />
-                            생각을 현실로 구현하고 문제를 해결하는 과정이 얼마나
-                            재미있고 짜릿한 일인지를 깨달았습니다.
-                            <br />
-                            본래 저의 성격과도 잘 맞다는 생각이 들어
-                            프론트엔드와 백엔드를 공부를 하면서 그동안 아무것도
-                            하지 못했다는 좌절과 어려움을 극복하였고,
-                            <br />
-                            웹개발을 통해 새로운 미래를 꿈꾸고 있습니다.
+                        <h3 className="split2 reveal reveal_LTR">
+                            enhance skills
+                        </h3>
+                        <p className="split3 reveal reveal_LTR">
+                            {aboutT2.map((phrase, index) => {
+                                return (
+                                    <span key={index}>
+                                        {phrase}
+                                        <br />
+                                    </span>
+                                );
+                            })}
                         </p>
-                        <p className="split3">
-                            이제는 개발에 관한 자신의 생각을 공유하고 다른 동료
-                            개발자 꿈나무들과 함께 성장할 수 있도록 서로
-                            도와주는 것을 좋아하게되었습니다.
-                            <br />
-                            여가 시간에는 개발과 관련된 영상을 시청하고, 새롭게
-                            알게 된 것을 직접 구현해보는 것을 즐기곤 합니다.
-                            <br />이 도전은 제게 진정한 꿈을 추구하고 끈질기게
-                            나아가기 위한 중요한 여정이며, 새로운 비전을 현실로
-                            만들기 위한 시작점입니다.
+                        <p className="split3 reveal reveal_LTR">
+                            {aboutT3.map((phrase, index) => {
+                                return (
+                                    <span key={index}>
+                                        {phrase}
+                                        <br />
+                                    </span>
+                                );
+                            })}
                         </p>
                     </div>
                 </div>
                 <div id="section3">
                     <div className="intro-wrap">
                         <div className="intro i1">
-                            <div className="p1">
-                                <div className="about_photos_img">
-                                    <p className="t1  mbm-diff">
-                                        first Challenge
-                                    </p>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="p2">
-                                <div className="about_photos_img">
-                                    <p className="t2 mbm-diff">
-                                        hidden Challenge
-                                    </p>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
+                            {[
+                                "first Challenge",
+                                "hidden Challenge",
+                                "last Challenge",
+                            ].map((challenge, index) => (
+                                <div key={index} className={`p${index + 1}`}>
+                                    <div className="about_photos_img">
+                                        <p className={`t${index + 1} mbm-diff`}>
+                                            {challenge}
+                                        </p>
+                                        {photoRows.map((row, rowIndex) => (
+                                            <div
+                                                key={rowIndex}
+                                                className="photo_wrap"
+                                            >
+                                                {photosPerRow.map(
+                                                    (photo, photoIndex) => (
+                                                        <div
+                                                            key={photoIndex}
+                                                            className="photo"
+                                                        ></div>
+                                                    )
+                                                )}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            </div>
-                            <div className="p3">
-                                <div className="about_photos_img">
-                                    <p className="t3 mbm-diff">
-                                        last Challenge
-                                    </p>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                    <div className="photo_wrap">
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                        <div className="photo"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

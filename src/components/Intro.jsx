@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { introImg } from "../constants";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Intro = () => {
@@ -87,7 +89,6 @@ const Intro = () => {
     }, []);
 
     useEffect(() => {
-
         gsap.set(
             ".intro_title .title .title_t1, .intro_title .title .title_t2",
             { overflow: "hidden" }
@@ -140,7 +141,6 @@ const Intro = () => {
         document.querySelectorAll(".flip-container").forEach((element) => {
             element.addEventListener("click", () => flipCard(element));
         });
-
     }, []);
 
     return (
@@ -153,201 +153,26 @@ const Intro = () => {
                         <p className="split">VISUAL</p>
                     </div>
                     <div className="images_wrap">
-                        <div className="img1 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?abstract"
-                                        alt="intro_1"
-                                    />
+                        {introImg.map((text, index) => {
+                            return (
+                                <div
+                                    className={`img${index + 1} flip-container`}
+                                    key={index}
+                                >
+                                    <div className="flipper">
+                                        <div className="front">
+                                            <img
+                                                src={text.src}
+                                                alt={`intro_${index + 1}`}
+                                            />
+                                        </div>
+                                        <div className="back">
+                                            <p>{text.back}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="back">
-                                    <p>시간</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img2 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?animal"
-                                        alt="intro_2"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>끈기</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img3 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?visual"
-                                        alt="intro_3"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>노력</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img4 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?story"
-                                        alt="intro_4"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>믿음</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img5 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?space"
-                                        alt="intro_5"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>정진</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img6 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?technology"
-                                        alt="intro_6"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>확신</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img7 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?texture"
-                                        alt="intro_7"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>체력</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img8 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?food"
-                                        alt="intro_8"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>즐거움</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img9 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?interior"
-                                        alt="intro_9"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>정리</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img10 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?abstract,art"
-                                        alt="intro_10"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>경험</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img11 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?art"
-                                        alt="intro_11"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>깨달음</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img12 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?red"
-                                        alt="intro_12"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>열정</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img13 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?blue"
-                                        alt="intro_13"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>신뢰</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img14 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?yellow"
-                                        alt="intro_14"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>가능성</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="img15 flip-container">
-                            <div className="flipper">
-                                <div className="front">
-                                    <img
-                                        src="https://source.unsplash.com/random/150x207.63/?nature"
-                                        alt="intro_15"
-                                    />
-                                </div>
-                                <div className="back">
-                                    <p>실현</p>
-                                </div>
-                            </div>
-                        </div>
+                            );
+                        })}
                     </div>
                     <div className="title_t2" ref={titleT2Ref}>
                         <p className="split">STORIES</p>

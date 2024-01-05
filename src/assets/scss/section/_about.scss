@@ -107,6 +107,7 @@
 
 .about_text_midle .text.t4 {
     padding-left: 1vw;
+    line-height: 0.6;
 }
 
 .about_text_midle .text.t5 {
@@ -116,7 +117,7 @@
 }
 
 .about_text_bottom {
-    padding: 90px 0 15vw 10vw;
+    padding: 90px 0 5vw 10vw;
 }
 
 .about_text_bottom .text.t6 {
@@ -211,6 +212,9 @@
 }
 
 @media (max-width: 479px) {
+    .about_wrap {
+        
+    }
     .about_text_top {
         display: none;
     }
@@ -273,7 +277,7 @@
 /* about_photos */
 /* test */
 #section3 {
-    height: 100vh;
+    height: 900vh;
     display: flex;
     z-index: 9;
     flex-direction: column;
@@ -296,13 +300,13 @@
 .intro-wrap .p2,
 .intro-wrap .p3 {
     width: 100%;
-    height: 100vh;
+    height: 300vh;
     font-family: var(--zeno);
     font-size: 9vw;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
 }
 
 .about_photos_img {
@@ -331,10 +335,10 @@
 .about_photos_img > p {
     font-family: var(--zeno);
     font-size: 9vw;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
     text-align: center;
     line-height: 0.9;
 }
