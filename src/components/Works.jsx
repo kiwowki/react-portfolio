@@ -59,8 +59,8 @@ const Works = () => {
               <img src={work.img} alt="img" />
             </div>
             <nav className="works_nav" role="navigation">
-              <Link to="#">{work.nav1}</Link>
-              <Link to="#">{work.nav2}</Link>
+              <Link to={work.href1}>{work.nav1}</Link>
+              <Link to={work.href2}>{work.nav2}</Link>
             </nav>
           </div>
         </div>

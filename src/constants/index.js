@@ -113,7 +113,9 @@ export const workText = [
       </div>
     ),
     nav1: "code view",
+    href1: "https://github.com/kiwowki/youtube-project",
     nav2: "site view",
+    href2: "/",
     img: worksImage1,
   },
   {
@@ -138,7 +140,9 @@ export const workText = [
       </div>
     ),
     nav1: "code view",
+    href1: "https://github.com/kiwowki/movie-project",
     nav2: "site view",
+    href2: "/",
     img: worksImage2,
   },
   {
@@ -161,7 +165,9 @@ export const workText = [
       </div>
     ),
     nav1: "code view",
+    href1: "https://github.com/kiwowki/webs2024/tree/main/php2",
     nav2: "site view",
+    href2: "/",
     img: worksImage3,
   },
   {
@@ -185,7 +191,9 @@ export const workText = [
       </div>
     ),
     nav1: "code view",
+    href1: "https://github.com/kiwowki/webs2024",
     nav2: "site view",
+    href2: "https://kiwowki.github.io/webs2024/",
     img: worksImage4,
   },
 ];
