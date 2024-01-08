@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import ContactImg from "../assets/img/profile.jpg";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   useEffect(() => {
@@ -45,23 +46,23 @@ const Contact = () => {
           </div>
         </div>
         <div className="bot">
-          <a href="#" id="goTop" className="top_button">
+          <Link to="#" id="goTop" className="top_button">
             GO TOP
-          </a>
+          </Link>
           <div className="text">SEND ME A MESSAGE:</div>
-          <a href="mailto:wolves941110@gmail.com" className="mail">
+          <Link to="mailto:wolves941110@gmail.com" className="mail">
             wolves941110@gmail.com
-          </a>
+          </Link>
         </div>
         <div className="sns">
           <span>
-            <a href="#">WORDPRESS</a>MY WORKS 2023
+            <Link to="#">WORDPRESS</Link>MY WORKS 2023
           </span>
           <span>
-            <a href="#">NOTION</a>WORKS DESCRIPTION
+            <Link to="#">NOTION</Link>WORKS DESCRIPTION
           </span>
           <span>
-            <a href="#">GITHUB</a>MARKDOWN, CODE
+            <Link to="#">GITHUB</Link>MARKDOWN, CODE
           </span>
         </div>
       </div>
