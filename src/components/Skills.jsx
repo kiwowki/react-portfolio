@@ -89,14 +89,14 @@ const Skills = () => {
 
   return (
     <section id="skills">
-      <h2 class="blind">skills</h2>
-      <div class="skills_wrap">
-        <div class="personality_wrap">
-          <div class="personality_top">
+      <h2 className="blind">skills</h2>
+      <div className="skills_wrap">
+        <div className="personality_wrap">
+          <div className="personality_top">
             SOME ASPECTS OF
             <br /> MY PERSONALITY
           </div>
-          <div class="personality_main">
+          <div className="personality_main">
             {PersonalityText.map((personality, index) => (
               <div key={`t${index + 1}`} className={`t${index + 1}`}>
                 {personality.eng}
@@ -105,62 +105,62 @@ const Skills = () => {
             ))}
           </div>
         </div>
-        <div class="skillSet_wrap">
-          <div class="skillSet_top">
+        <div className="skillSet_wrap">
+          <div className="skillSet_top">
             MORE ABOUT MY SKILL SET
             <br />
             AND THINGS I LIKE
             <br />
           </div>
-          <div class="skillSet_main">
-            <div class="top">
-              <div class="left">
-                <div class="h3">key</div>
+          <div className="skillSet_main">
+            <div className="top">
+              <div className="left">
+                <div className="h3">key</div>
               </div>
-              <div class="mid">
-                <div class="h3">html/css</div>
-                <div class="h3">javascript</div>
-                <div class="h3">react</div>
-                <div class="h3">php</div>
-                <div class="h3">node.js</div>
-                <div class="h3">vue.js</div>
-                <div class="h3">branding</div>
+              <div className="mid">
+                <div className="h3">html/css</div>
+                <div className="h3">javascript</div>
+                <div className="h3">react</div>
+                <div className="h3">php</div>
+                <div className="h3">node.js</div>
+                <div className="h3">vue.js</div>
+                <div className="h3">branding</div>
               </div>
-              <div class="right">
-                <div class="h3">skills</div>
-              </div>
-            </div>
-            <div class="middle">
-              <div class="left">
-                <div class="h4">special</div>
-              </div>
-              <div class="mid">
-                <div class="h4">graphic design</div>
-                <div class="h4">workshops</div>
-                <div class="h4">webflow</div>
-                <div class="h4">pm</div>
-                <div class="h4">3d</div>
-                <div class="h4">architectural degree</div>
-              </div>
-              <div class="right">
-                <div class="h4">expertise</div>
+              <div className="right">
+                <div className="h3">skills</div>
               </div>
             </div>
-            <div class="bot">
-              <div class="left">
-                <div class="h3_bold">crush</div>
+            <div className="middle">
+              <div className="left">
+                <div className="h4">special</div>
               </div>
-              <div class="mid">
-                <div class="h3_bold">fashion</div>
-                <div class="h3_bold">digital fashion</div>
-                <div class="h3_bold">nft art</div>
-                <div class="h3_bold">metaverse</div>
-                <div class="h3_bold">chrome design</div>
-                <div class="h3_bold">workouts</div>
-                <div class="h3_bold">seals</div>
+              <div className="mid">
+                <div className="h4">graphic design</div>
+                <div className="h4">workshops</div>
+                <div className="h4">webflow</div>
+                <div className="h4">pm</div>
+                <div className="h4">3d</div>
+                <div className="h4">architectural degree</div>
               </div>
-              <div class="right">
-                <div class="h3_bold">things</div>
+              <div className="right">
+                <div className="h4">expertise</div>
+              </div>
+            </div>
+            <div className="bot">
+              <div className="left">
+                <div className="h3_bold">crush</div>
+              </div>
+              <div className="mid">
+                <div className="h3_bold">fashion</div>
+                <div className="h3_bold">digital fashion</div>
+                <div className="h3_bold">nft art</div>
+                <div className="h3_bold">metaverse</div>
+                <div className="h3_bold">chrome design</div>
+                <div className="h3_bold">workouts</div>
+                <div className="h3_bold">seals</div>
+              </div>
+              <div className="right">
+                <div className="h3_bold">things</div>
               </div>
             </div>
           </div>
