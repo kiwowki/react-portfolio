@@ -209,7 +209,7 @@ const About = () => {
         scrollTrigger: {
           trigger: "#section3",
           start: "top top",
-          end: "+=2000%",
+          end: "+=800%",
           scrub: true,
           pin: true,
           markers: true,
