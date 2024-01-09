@@ -52,20 +52,6 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 4. lenis 설치 `npm i @studio-freight/lenis`
 5. react-router-dom 설치 `npm i react-router-dom`
 
-## 트러블 슈팅
-
-<details>
-<summary>Whitespace 에러</summary>
-유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,   
-윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데   
-Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.   
-   
-해결방법   
-`git config --global core.autocrlf true` // 시스템 전체에 적용 
-⠀  
-`git config core.autocrlf true` // 해당 프로젝트에만 적용
-</details>
-
 ## git 업로드
 
 <details>
@@ -119,3 +105,17 @@ Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
 -   Refs : 이것은 React 요소에 대한 참조를 생성하고, 생성된 참조를 통해 해당 React 요소와 연결된 실제 DOM 요소에 접근할 수 있게 해줍니다. React 컴포넌트 내에서 DOM 요소를 직접 조작해야 할 때 사용됩니다.
 
 -   DOM : Document Object Model. 웹페이지를 프로그래밍 언어가 이용할 수 있는 구조로 만들어주는 표준 모델.
+
+## 트러블 슈팅
+
+<details>
+<summary>Whitespace 에러</summary>
+유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,   
+윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데   
+Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.   
+   
+해결방법   
+`git config --global core.autocrlf true` // 시스템 전체에 적용 
+⠀  
+`git config core.autocrlf true` // 해당 프로젝트에만 적용
+</details>
