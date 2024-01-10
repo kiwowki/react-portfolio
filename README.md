@@ -1,5 +1,10 @@
 # react를 이용한 포트폴리오 사이트 만들기
 
+
+** 임시로 쓰고 삭제할 것
+_id: mongoose.Schema.Types.ObjectId
+
+
 ##### React는 Facebook에서 개발한 JavaScript 라이브러리로, 사용자 인터페이스(UI)를 구축하는 데 사용되는 오픈 소스 라이브러리입니다.
 
 -   컴포넌트 기반 구조
@@ -80,6 +85,16 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 -   Firebase는 Google의 클라우드 기반 개발 플랫폼으로, 앱 및 웹 애플리케이션을 빠르게 구축하고 호스팅, 데이터베이스 관리, 사용자 인증, 푸시 알림 등을 제공합니다. 개발자들은 Firebase를 사용하여 개발 생산성을 향상시키고, 실시간 데이터 동기화와 분석을 통해 사용자 경험을 개선할 수 있습니다. Firebase는 서버리스 아키텍처를 채용하여 백엔드 관리 부담을 줄여줍니다.
 -   Firebase를 사용하여 포트폴리오 사이트를 만들면 간단하고 안정적인 웹 호스팅을 활용할 수 있습니다. Firebase Hosting을 통해 웹 페이지를 호스팅하고 Firebase의 데이터베이스 기능을 사용하여 프로젝트, 작품 또는 경험을 관리하고 표시할 수 있습니다. Firebase의 사용자 인증과 보안 규칙을 활용하여 접근 제어를 설정하고, Firebase Analytics를 통해 방문자 동작을 추적하여 포트폴리오 사이트를 개선할 수 있습니다. Firebase는 개발자에게 강력한 도구를 제공하여 포트폴리오를 프로페셔널하게 관리하고 성공적으로 전시할 수 있도록 돕습니다.
 
+### heroku
+
+- heroku 회원가입
+- heroku 홈페이지에서 app 만들기
+- 터미널에서 로그인 
+1. `heroku login` - 웹 브라우저에서 로그인
+2. `heroku login -i` - 인터랙티브한 텍스트 기반 인증을 사용
+- 현재의 Git 저장소를 Heroku 앱과 연결 (`heroku git:remote -a visualstories`)
+- 명령어를 사용하여 코드를 Heroku에 배포 (`git push heroku main`)
+
     [Firebase 공식 사이트 바로가기](https://console.firebase.google.com/?hl=ko)
 
 <details>
@@ -109,6 +124,29 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 ## 트러블 슈팅
 
 <details>
+<summary>heroku login 에러</summary>
+Multi-Factor Authentication(MFA)가 활성화되어 있는 계정으로 로그인하려고 하는데, 기본 인증 방법(이메일과 비밀번호)으로는 지원되지 않습니다.   
+대신 API 액세스를 위한 권한 부여 토큰을 생성해야 합니다.   
+   
+```bash
+$ heroku login -i
+heroku: Enter your login credentials
+Email [wow_ki12@naver.com]: 
+Password: **********
+ »   Error: Your account has MFA enabled; API requests using basic authentication 
+ »   with email and password are not supported. Please generate an authorization  
+ »   token for API access.
+ »
+ »   Error ID: vaas_enrolled
+ ```
+ 
+해결방법   
+1. Heroku 계정 설정 페이지에서 "API" 탭을 클릭하여 API Key를 생성.
+2. 생성된 API Key를 복사.
+3. 명령 프롬프트에서 heroku login -i 명령어를 실행할 때 이메일에는 Heroku 계정 이메일을 입력하고, 비밀번호 대신에 복사한 API Key를 입력.
+</details>
+
+<details>
 <summary>Whitespace 에러</summary>
 유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,   
 윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데   
@@ -118,4 +156,5 @@ Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
 `git config --global core.autocrlf true` // 시스템 전체에 적용 
 ⠀  
 `git config core.autocrlf true` // 해당 프로젝트에만 적용
+
 </details>

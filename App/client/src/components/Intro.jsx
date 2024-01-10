@@ -3,12 +3,49 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { introImg } from "../constants";
+import RepleArea from "./reple/RepleArea";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Intro = () => {
     const titleT1Ref = useRef(null);
     const titleT2Ref = useRef([]);
+
+    // OS를 확인하는 함수
+    const getOperatingSystem = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        if (userAgent.includes("win")) return "windows";
+        if (userAgent.includes("mac")) return "mac";
+        return "unknown";
+    };
+
+    // 운영체제에 따라 다른 CSS를 반환하는 함수
+    const getOsSpecificStyles = () => {
+        const os = getOperatingSystem();
+
+        if (os === "mac") {
+            return {
+                title_t1: {
+                    paddingTop: "0.7vw",
+                    lineHeight: "0.9",
+                },
+                title_t2: {
+                    paddingTop: "0.7vw",
+                    lineHeight: "0.9",
+                },
+            };
+        } else {
+            // 윈도우 버전에 대한 스타일 설정
+            return {
+                title_t1: {
+                    // 윈도우 버전에 대한 스타일 설정
+                },
+                title_t2: {
+                    // 윈도우 버전에 대한 스타일 설정
+                },
+            };
+        }
+    };
 
     useEffect(() => {
         // intro 배경 3D
@@ -150,7 +187,12 @@ const Intro = () => {
             <div className="intro_title">
                 <div className="title">
                     <div className="title_t1" ref={titleT1Ref}>
-                        <p className="split">VISUAL</p>
+                        <p
+                            className="split"
+                            style={getOsSpecificStyles().title_t1}
+                        >
+                            VISUAL
+                        </p>
                     </div>
                     <div className="images_wrap">
                         {introImg.map((text, index) => {
@@ -175,7 +217,12 @@ const Intro = () => {
                         })}
                     </div>
                     <div className="title_t2" ref={titleT2Ref}>
-                        <p className="split">STORIES</p>
+                        <p
+                            className="split"
+                            style={getOsSpecificStyles().title_t2}
+                        >
+                            STORIES
+                        </p>
                     </div>
                 </div>
             </div>
