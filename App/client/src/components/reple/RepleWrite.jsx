@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+// import WriteIcon from '../../assets/img/icon/write_placeholder.svg'
 
 const RepleWrite = ({ onUpdateRepleList }) => {
     const [reple, setReple] = useState("");
@@ -31,7 +32,7 @@ const RepleWrite = ({ onUpdateRepleList }) => {
 
         axios.post("/api/reple/submit", data).then((response) => {
             if (response.data.success) {
-                alert("댓글 작성이 성공하였습니다.");
+                // alert("소중한 댓글 감사드립니다!");
 
                 // 댓글이 성공적으로 작성되면 부모 컴포넌트에서 전달받은 함수 호출
                 onUpdateRepleList();
@@ -57,49 +58,55 @@ const RepleWrite = ({ onUpdateRepleList }) => {
 
     return (
         <form>
-            <input
-                className="reple_name"
-                type="text"
-                placeholder="작성자 이름"
-                value={authorName}
-                onChange={(e) => {
-                    setAuthorName(e.currentTarget.value);
-                }}
-            />
-            <input
-                className="reple_pass"
-                type="password"
-                placeholder="비밀번호"
-                value={authorPassword}
-                onChange={(e) => {
-                    setAuthorPassword(e.currentTarget.value);
-                }}
-            />
-            <input
-                className="reple_content"
-                type="text"
-                placeholder="댓글을 입력하세요"
-                value={reple}
-                onChange={(e) => {
-                    const inputText = e.currentTarget.value;
-                    const byteLength = calculateByteLength(inputText);
+            <div className="write_top">
+                <input
+                    className="reple_name"
+                    type="text"
+                    placeholder="이름"
+                    value={authorName}
+                    onChange={(e) => {
+                        setAuthorName(e.currentTarget.value);
+                    }}
+                    autoComplete="off"
+                />
+                <input
+                    className="reple_pass"
+                    type="password"
+                    placeholder="비밀번호"
+                    value={authorPassword}
+                    onChange={(e) => {
+                        setAuthorPassword(e.currentTarget.value);
+                    }}
+                    autoComplete="off"
+                />
+            </div>
+            <div className="write_bot">
+                <input
+                    className="reple_content"
+                    type="text"
+                    placeholder="댓글은 50자 이내로 작성 부탁드립니다!"
+                    value={reple}
+                    onChange={(e) => {
+                        const inputText = e.currentTarget.value;
+                        const byteLength = calculateByteLength(inputText);
 
-                    if (byteLength <= MAX_LENGTH) {
-                        setReple(inputText);
-                    } else {
-                        setReple(inputText.slice(0, MAX_LENGTH));
-                        alert("50자 이내로만 작성이 가능합니다!");
-                    }
-                }}
-            />
+                        if (byteLength <= MAX_LENGTH) {
+                            setReple(inputText);
+                        } else {
+                            setReple(inputText.slice(0, MAX_LENGTH));
+                            alert("50자 이내로만 작성이 가능합니다!");
+                        }
+                    }}
+                />
 
-            <button
-                onClick={(e) => {
-                    submitHandler(e);
-                }}
-            >
-                댓글 쓰기
-            </button>
+                <button
+                    onClick={(e) => {
+                        submitHandler(e);
+                    }}
+                >
+                    WRITE
+                </button>
+            </div>
         </form>
     );
 };

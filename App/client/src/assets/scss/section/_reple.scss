@@ -1,15 +1,26 @@
 .reple_area {
-    width: 50%;
-    height: 100vh;
+    margin-top: 5vh;
+    width: 100%;
+    max-height: 100vh;
+    font-family: var(--pre);
+    display: flex;
+    justify-content: flex-end;
     .reple_wrap {
+        width: 50%;
         height: auto;
         .reple_list {
             width: 100%;
-            height: 200px;
-            // max-height: 60vh;
-            border: 1px solid var(--black100);
+            height: 50vh;
+            // border: 1px solid var(--black100);
             color: var(--white);
+            padding: 0.5vw 1vw 1vw 1vw;
+
             overflow-y: scroll;
+
+            .lenis.lenis-smooth [data-lenis-prevent] {
+                overscroll-behavior: contain;
+            }
+
             &::-webkit-scrollbar {
                 width: 6px; /* 스크롤바의 너비 설정 */
             }
@@ -22,10 +33,65 @@
             &::-webkit-scrollbar-track {
                 background-color: var(--box-purple3);
             }
+
             .reple {
-                p {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                &:nth-child(even) {
+                    align-items: flex-start;
                 }
-                button {
+                .reple_top {
+                    display: flex;
+                    margin-bottom: 1vh;
+                    .author {
+                        font-family: var(--);
+                        font-weight: bold;
+                        display: inline-block;
+                    }
+                    .date {
+                        padding-left: 10px;
+                        display: inline-block;
+                        font-size: 14px;
+                        color: var(--black200);
+                    }
+                }
+                .reple_bot {
+                    display: flex;
+
+                    .content {
+                        display: inline-block;
+                        background-color: var(--black100);
+                        padding: 1vw 2vw;
+                        border-radius: 15px;
+                    }
+                    button {
+                        background-color: black;
+                        border: none;
+                        color: var(--black400);
+                        display: flex;
+                        align-items: flex-end;
+                        cursor: pointer;
+                    }
+                }
+                .modal {
+                    width: auto;
+                    padding-top: 10px;
+                    input {
+                        outline: none;
+                        width: 50%;
+                        padding: 0.5vw 1vw;
+                        background-color: var(--black);
+                        border: 1px solid var(--black100);
+                        color: var(--white);
+                    }
+                    button {
+                        background-color: black;
+                        color: var(--black400);
+                        // display: flex;
+                        // align-items: flex-end;
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -36,14 +102,46 @@
             border: 1px solid var(--black100);
             color: var(--white);
             input {
+                outline: none;
             }
-            .reple_name {
+            .write_top {
+                border-bottom: 1px solid var(--black100);
+                .reple_name {
+                    width: 50%;
+                    padding: 0.5vw 1vw;
+                    background-color: var(--black);
+                    border: none;
+                    color: var(--white);
+                }
+                .reple_pass {
+                    width: 50%;
+                    padding: 0.5vw 1vw;
+                    background-color: var(--black);
+                    border: none;
+                    color: var(--white);
+                    border-left: 1px solid var(--black100);
+                }
             }
-            .reple_pass {
-            }
-            .reple_content {
-            }
-            button {
+            .write_bot {
+                display: flex;
+                align-items: center;
+                .reple_content {
+                    width: 90%;
+                    padding: 1.5vw 1vw;
+                    background-color: var(--black);
+                    border: none;
+                    color: var(--white);
+                }
+                button {
+                    padding: 0.1vw 0.3vw;
+                    width: 10%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    background-color: var(--black);
+                    color: var(--white);
+                    cursor: pointer;
+                }
             }
         }
     }

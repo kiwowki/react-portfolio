@@ -13,6 +13,7 @@
     "framer-motion": "^10.17.0",
     "gsap": "^3.12.4",
     "http-proxy-middleware": "^2.0.6",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",

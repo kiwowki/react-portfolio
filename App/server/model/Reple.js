@@ -6,7 +6,7 @@ const repleSchema = new mongoose.Schema(
         authorName: String,
         authorPassword: String
     },
-    { collection: "reples" }
+    { collection: "reples", timestamps: true  }
 );
 
 const Reple = mongoose.model("Reple", repleSchema);

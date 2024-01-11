@@ -1,9 +1,7 @@
 # react를 이용한 포트폴리오 사이트 만들기
 
-
-** 임시로 쓰고 삭제할 것
-_id: mongoose.Schema.Types.ObjectId
-
+\*\* 임시로 쓰고 삭제할 것
+\_id: mongoose.Schema.Types.ObjectId
 
 ##### React는 Facebook에서 개발한 JavaScript 라이브러리로, 사용자 인터페이스(UI)를 구축하는 데 사용되는 오픈 소스 라이브러리입니다.
 
@@ -56,6 +54,7 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 3. sass 설치 `npm i sass`
 4. lenis 설치 `npm i @studio-freight/lenis`
 5. react-router-dom 설치 `npm i react-router-dom`
+6. moment 설치 `npm install moment`
 
 ## git 업로드
 
@@ -87,13 +86,15 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 
 ### heroku
 
-- heroku 회원가입
-- heroku 홈페이지에서 app 만들기
-- 터미널에서 로그인 
+-   heroku 회원가입
+-   heroku 홈페이지에서 app 만들기
+-   터미널에서 로그인
+
 1. `heroku login` - 웹 브라우저에서 로그인
 2. `heroku login -i` - 인터랙티브한 텍스트 기반 인증을 사용
-- 현재의 Git 저장소를 Heroku 앱과 연결 (`heroku git:remote -a visualstories`)
-- 명령어를 사용하여 코드를 Heroku에 배포 (`git push heroku main`)
+
+-   현재의 Git 저장소를 Heroku 앱과 연결 (`heroku git:remote -a visualstories`)
+-   명령어를 사용하여 코드를 Heroku에 배포 (`git push heroku main`)
 
     [Firebase 공식 사이트 바로가기](https://console.firebase.google.com/?hl=ko)
 
@@ -144,6 +145,29 @@ Password: **********
 1. Heroku 계정 설정 페이지에서 "API" 탭을 클릭하여 API Key를 생성.
 2. 생성된 API Key를 복사.
 3. 명령 프롬프트에서 heroku login -i 명령어를 실행할 때 이메일에는 Heroku 계정 이메일을 입력하고, 비밀번호 대신에 복사한 API Key를 입력.
+</details>
+
+<details>
+<summary>lenis 사용시 scroll content의 스크롤이 안 되는 에러</summary>
+lenis를 사용하면 내부 스크롤 컨텐츠의 스크롤의 휠이 막혀있다.
+해결하기위해서 lenis 깃허브에 있는 문서를 참고했다.
+
+[lenis 깃허브](https://github.com/studio-freight/lenis)
+
+해결방법
+
+1. 스크롤을 사용하고자 하는 요소에 `data-lenis-prevent-wheel` 을 붙여준다.
+```js
+<div data-lenis-prevent-wheel>scroll content</div>
+```
+
+2. css에 해당 요소의 하위요소로 밑의 코드를 붙여준다.
+```css
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+```
+
 </details>
 
 <details>

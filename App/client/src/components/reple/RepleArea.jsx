@@ -16,9 +16,9 @@ const RepleArea = () => {
     // 스크롤이 있는 경우에만 실행
     if (repleWrapRef.current) {
       repleWrapRef.current.scrollIntoView({
-        // behavior: "smooth",
-        // block: "end",
-        // inline: "nearest",
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     }
   }, [repleListUpdated]);

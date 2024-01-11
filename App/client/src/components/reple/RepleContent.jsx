@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 
+import moment from "moment";
+import "moment/locale/ko";
+
 const RepleContent = (props) => {
     const [deleteModalFlag, setDeleteModalFlag] = useState(false);
     const [authorPassword, setAuthorPassword] = useState(""); // 비밀번호 추가
@@ -18,6 +21,14 @@ const RepleContent = (props) => {
     const closeDeleteModal = () => {
         setDeleteModalFlag(false);
         setAuthorPassword(""); // 모달이 닫힐 때 비밀번호 초기화
+    };
+
+    const SetTime = (a, b) => {
+        if (a !== b) {
+            return moment(b).format("MMMM Do, hh:mm") + "(수정됨)";
+        } else {
+            return moment(a).format("MMMM Do hh:mm");
+        }
     };
 
     const deleteHandler = (e) => {
@@ -73,9 +84,16 @@ const RepleContent = (props) => {
 
     return (
         <div className="reple">
-            <p>{props.reple.authorName}</p>
-            <p>{props.reple.reple}</p>
-            <button onClick={openDeleteModal}>삭제</button>
+            <div className="reple_top">
+                <div className="author">{props.reple.authorName}</div>
+                <div className="date">
+                    {SetTime(props.reple.createdAt, props.reple.updatedAt)}
+                </div>
+            </div>
+            <div className="reple_bot">
+                <div className="content">{props.reple.reple}</div>
+                <button onClick={openDeleteModal}>삭제</button>
+            </div>
             {deleteModalFlag && (
                 <div className="modal" ref={ref}>
                     <input
