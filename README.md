@@ -157,11 +157,13 @@ lenis를 사용하면 내부 스크롤 컨텐츠의 스크롤의 휠이 막혀�
 해결방법
 
 1. 스크롤을 사용하고자 하는 요소에 `data-lenis-prevent-wheel` 을 붙여준다.
+
 ```js
 <div data-lenis-prevent-wheel>scroll content</div>
 ```
 
 2. css에 해당 요소의 하위요소로 밑의 코드를 붙여준다.
+
 ```css
 .lenis.lenis-smooth [data-lenis-prevent] {
     overscroll-behavior: contain;
@@ -171,22 +173,77 @@ lenis를 사용하면 내부 스크롤 컨텐츠의 스크롤의 휠이 막혀�
 </details>
 
 <details>
+<summary>chrome input의 자동완성 css 수정이 안 되는 현상</summary>
+chrome 브라우저에서는 input에 자동완성을 통해 입력하면 자동으로 input의 배경색, 글자색이 변경됩니다.
+이는 chrome 브라우저의 기본설정이 다음과 같이 설정되어있기 때문입니다.
+브라우저별로 기본 사용자 스타일이 적용되어 있는데 이 경우 !important 로 적용되어 있기 때문에 아무리 :autofill 을 이용해 제어하려고 해도 제어가 되지 않습니다.
+
+```scss
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: -internal-light-dark(
+        rgb(232, 240, 254),
+        rgba(70, 90, 126, 0.4)
+    ) !important;
+    color: -internal-light-dark(black, white) !important;
+}
+```
+
+:autofill 은 hover, active 등과 같이 선택자에 추가하는 의사 클래스로, input 요소의 값이 자동으로 채워질 때 동작합니다.
+
+해결방법
+
+```scss
+&:-webkit-autofill,
+&:-webkit-autofill:hover,
+&:-webkit-autofill:focus,
+&:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px #000000 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+```
+
+[참고 사이트](https://happytape.tistory.com/41)
+
+</details>
+
+<details>
 <summary>Netlify 배포시 Deploy failed for visualstories 에러</summary>
-   
-해결방법   
+
+해결방법
+
+</details>
+
+<details>
+<summary>gsap 사용시 #contact 부분에서 버벅임이 발생하는 에러</summary>
+스크롤을 내리다보면 #contact 부분에서 이유를 알 수 없는 버벅임이 발생한다.
+이는 lenis를 끄면 사라지는데 아마 gsap와 lenis의 충돌로 인한 오류로 추청 됨.
+
+해결방법
+
+</details>
+
+<details>
+<summary>gsap 사용시 #work 부분에서 종종 적용이 안 되는 에러</summary>
+새로고침 혹은 반응형 체크를 하는 중에 종종 gsap에 설정해놓은 height값(100vh)이 css의 값(300vh)으로 보여 화면이 깨지는 현상이 나타남.
+
+해결방법
 
 </details>
 
 <details>
 <summary>Whitespace 에러</summary>
-유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,   
-윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데   
-Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.   
-   
-해결방법   
-`git config --global core.autocrlf true` // 시스템 전체에 적용 
-⠀  
+유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,
+윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데
+Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
+
+해결방법
+`git config --global core.autocrlf true` // 시스템 전체에 적용
+⠀
 `git config core.autocrlf true` // 해당 프로젝트에만 적용
 
 </details>
-
+````

@@ -1,12 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.98494e1e.css",
-    "main.js": "/static/js/main.aad86eb6.js",
+    "main.css": "/static/css/main.a8ecc38a.css",
+    "main.js": "/static/js/main.78e89a26.js",
     "static/media/about_gif3.gif": "/static/media/about_gif3.88b8e515822560990f9c.gif",
     "static/media/about_gif2.gif": "/static/media/about_gif2.8916b47dc8c0aa777984.gif",
     "static/media/about_gif1.gif": "/static/media/about_gif1.2ccb818828759b4a170b.gif",
     "static/media/about_gif4.gif": "/static/media/about_gif4.02974374ea4dfe25a5fd.gif",
-    "static/media/profile.jpg": "/static/media/profile.20b68c0b6531c29fa1f9.jpg",
     "static/media/works1_3.jpg": "/static/media/works1_3.c96e301dc4ec88be2ec3.jpg",
     "static/media/works1_1.jpg": "/static/media/works1_1.1dc623bbd03e15f86858.jpg",
     "static/media/works1_2.jpg": "/static/media/works1_2.0be43a2b84682ea8ae58.jpg",
@@ -15,15 +14,16 @@
     "static/media/about_img3.jpg": "/static/media/about_img3.f3e1c919910f98d092da.jpg",
     "static/media/about_img2.jpg": "/static/media/about_img2.17de9e6416451d2f76db.jpg",
     "static/media/about_img1.jpg": "/static/media/about_img1.e4efeb8d95afbade3aeb.jpg",
+    "static/media/profile-min.jpg": "/static/media/profile-min.5970719ca3016b383a3a.jpg",
     "static/media/my_img1.jpg": "/static/media/my_img1.1f10d6aecf075705e5c0.jpg",
     "static/media/PartizenoRegular.woff": "/static/media/PartizenoRegular.557d4a5bf629590bb478.woff",
     "static/media/PartizenoRegular.woff2": "/static/media/PartizenoRegular.499768a5c3f5f8e6e36a.woff2",
     "index.html": "/index.html",
-    "main.98494e1e.css.map": "/static/css/main.98494e1e.css.map",
-    "main.aad86eb6.js.map": "/static/js/main.aad86eb6.js.map"
+    "main.a8ecc38a.css.map": "/static/css/main.a8ecc38a.css.map",
+    "main.78e89a26.js.map": "/static/js/main.78e89a26.js.map"
   },
   "entrypoints": [
-    "static/css/main.98494e1e.css",
-    "static/js/main.aad86eb6.js"
+    "static/css/main.a8ecc38a.css",
+    "static/js/main.78e89a26.js"
   ]
 }

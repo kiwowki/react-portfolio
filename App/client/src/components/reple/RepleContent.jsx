@@ -8,6 +8,18 @@ const RepleContent = (props) => {
     const [deleteModalFlag, setDeleteModalFlag] = useState(false);
     const [authorPassword, setAuthorPassword] = useState(""); // 비밀번호 추가
 
+    // const values = [1, 2, 3, 4, 5, 6, 7, 8]; // 할당할 값들의 배열
+    // const totalElements = 8; // 할당할 요소의 총 개수
+
+    // useEffect(() => {
+    //     const elements = document.querySelectorAll(".r");
+    //     for (let i = 0; i < totalElements; i++) {
+    //         const index = i % values.length;
+    //         const value = values[index];
+    //         elements[i].textContent = value;
+    //     }
+    // }, [values, totalElements]);
+
     const ref = useRef();
     useOnClickOutside(ref, () => {
         setDeleteModalFlag(false);
@@ -24,11 +36,8 @@ const RepleContent = (props) => {
     };
 
     const SetTime = (a, b) => {
-        if (a !== b) {
-            return moment(b).format("MMMM Do, hh:mm") + "(수정됨)";
-        } else {
-            return moment(a).format("MMMM Do hh:mm");
-        }
+        const timeToDisplay = a !== b ? b : a; // 수정됐다면 수정된 시간, 아니면 생성된 시간
+        return moment(timeToDisplay).fromNow(); // 상대적인 시간으로 표시
     };
 
     const deleteHandler = (e) => {
@@ -84,29 +93,31 @@ const RepleContent = (props) => {
     };
 
     return (
-        <div className="reple">
-            <div className="reple_top">
-                <div className="author">{props.reple.authorName}</div>
-                <div className="date">
-                    {SetTime(props.reple.createdAt, props.reple.updatedAt)}
+        <div className="reple_container">
+            <div className={`reple r${props.index + 1}`}>
+                <div className="reple_top">
+                    <div className="author">{props.reple.authorName}</div>
+                    <div className="date">
+                        {SetTime(props.reple.createdAt, props.reple.updatedAt)}
+                    </div>
                 </div>
-            </div>
-            <div className="reple_bot">
-                <div className="content">{props.reple.reple}</div>
-                <button onClick={openDeleteModal}>삭제</button>
-            </div>
-            {deleteModalFlag && (
-                <div className="modal" ref={ref}>
-                    <input
-                        type="password"
-                        placeholder="비밀번호 입력"
-                        value={authorPassword}
-                        onChange={(e) => setAuthorPassword(e.target.value)}
-                    />
-                    <button onClick={deleteHandler}>삭제</button>
-                    <button onClick={closeDeleteModal}>취소</button>
+                <div className="reple_bot">
+                    <div className="content">{props.reple.reple}</div>
+                    <button onClick={openDeleteModal}>...</button>
                 </div>
-            )}
+                {deleteModalFlag && (
+                    <div className="modal" ref={ref}>
+                        <input
+                            type="password"
+                            placeholder="비밀번호 입력"
+                            value={authorPassword}
+                            onChange={(e) => setAuthorPassword(e.target.value)}
+                        />
+                        <button onClick={deleteHandler}>삭제</button>
+                        <button onClick={closeDeleteModal}>취소</button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

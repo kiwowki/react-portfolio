@@ -45,9 +45,20 @@ const RepleList = () => {
                 ref={repleListRef}
                 className="reple_list"
             >
-                {repleList.map((reple, idx) => {
-                    return <RepleContent reple={reple} key={idx} onDeleteSuccess={handleDeleteSuccess} />;
-                })}
+                {repleList
+                    .slice()
+                    .reverse()
+                    .map((reple, idx) => {
+                        const reversedIndex = (idx) % 8; // 1부터 시작하는 인덱스를 8로 나눈 나머지를 사용
+                        return (
+                            <RepleContent
+                                reple={reple}
+                                key={idx}
+                                index={reversedIndex}
+                                onDeleteSuccess={handleDeleteSuccess}
+                            />
+                        );
+                    })}
             </div>
             <RepleWrite onUpdateRepleList={onUpdateRepleList} />
         </>

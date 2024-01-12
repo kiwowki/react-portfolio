@@ -58,55 +58,51 @@ const RepleWrite = ({ onUpdateRepleList }) => {
 
     return (
         <form>
-            <div className="write_top">
-                <input
-                    className="reple_name"
-                    type="text"
-                    placeholder="이름"
-                    value={authorName}
-                    onChange={(e) => {
-                        setAuthorName(e.currentTarget.value);
-                    }}
-                    autoComplete="off"
-                />
-                <input
-                    className="reple_pass"
-                    type="password"
-                    placeholder="비밀번호"
-                    value={authorPassword}
-                    onChange={(e) => {
-                        setAuthorPassword(e.currentTarget.value);
-                    }}
-                    autoComplete="off"
-                />
-            </div>
-            <div className="write_bot">
-                <input
-                    className="reple_content"
-                    type="text"
-                    placeholder="댓글은 50자 이내로 작성 부탁드립니다!"
-                    value={reple}
-                    onChange={(e) => {
-                        const inputText = e.currentTarget.value;
-                        const byteLength = calculateByteLength(inputText);
+            <input
+                className="reple_name"
+                type="text"
+                placeholder="이름"
+                value={authorName}
+                onChange={(e) => {
+                    setAuthorName(e.currentTarget.value);
+                }}
+                autoComplete="off"
+            />
+            <input
+                className="reple_pass"
+                type="password"
+                placeholder="비밀번호"
+                value={authorPassword}
+                onChange={(e) => {
+                    setAuthorPassword(e.currentTarget.value);
+                }}
+                autoComplete="off"
+            />
+            <input
+                className="reple_content"
+                type="text"
+                placeholder="댓글은 50자 이내로 작성 부탁드립니다!"
+                value={reple}
+                onChange={(e) => {
+                    const inputText = e.currentTarget.value;
+                    const byteLength = calculateByteLength(inputText);
 
-                        if (byteLength <= MAX_LENGTH) {
-                            setReple(inputText);
-                        } else {
-                            setReple(inputText.slice(0, MAX_LENGTH));
-                            alert("50자 이내로만 작성이 가능합니다!");
-                        }
-                    }}
-                />
+                    if (byteLength <= MAX_LENGTH) {
+                        setReple(inputText);
+                    } else {
+                        setReple(inputText.slice(0, MAX_LENGTH));
+                        alert("50자 이내로만 작성이 가능합니다!");
+                    }
+                }}
+            />
 
-                <button
-                    onClick={(e) => {
-                        submitHandler(e);
-                    }}
-                >
-                    WRITE
-                </button>
-            </div>
+            <button
+                onClick={(e) => {
+                    submitHandler(e);
+                }}
+            >
+                WRITE
+            </button>
         </form>
     );
 };

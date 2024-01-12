@@ -20,8 +20,6 @@ const RepleArea = () => {
     return (
         <div className="reple_wrap" ref={repleWrapRef}>
             <RepleList repleListUpdated={false} />{" "}
-            {/* repleListUpdated 값을 직접 전달 */}
-            {/* <RepleWrite onUpdateRepleList={handleUpdateRepleList} /> */}
         </div>
     );
 };
