@@ -171,6 +171,13 @@ lenis를 사용하면 내부 스크롤 컨텐츠의 스크롤의 휠이 막혀�
 </details>
 
 <details>
+<summary>Netlify 배포시 Deploy failed for visualstories 에러</summary>
+   
+해결방법   
+
+</details>
+
+<details>
 <summary>Whitespace 에러</summary>
 유닉스 시스템에서는 한 줄의 끝이 LF(Line Feed)로 이루어지는 반면,   
 윈도우에서는 줄 하나가 CR(Carriage Return)과 LF, 즉 CRLF로 이루어지는데   
@@ -182,3 +189,4 @@ Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
 `git config core.autocrlf true` // 해당 프로젝트에만 적용
 
 </details>
+

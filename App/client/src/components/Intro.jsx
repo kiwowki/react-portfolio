@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { introImg } from "../constants";
-import RepleArea from "./reple/RepleArea";
+// import RepleArea from "./reple/RepleArea";
 
 gsap.registerPlugin(ScrollTrigger);
 
