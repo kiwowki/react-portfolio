@@ -10,13 +10,13 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 90vw;
+            width: 100%;
             height: 85vh;
             overflow-y: scroll;
             display: flex;
             flex-direction: column-reverse;
             color: var(--white);
-            padding: 0.5vw 1vw 1vw 1vw;
+            padding: 1vw 5vw 1vw 5vw;
 
             .lenis.lenis-smooth [data-lenis-prevent] {
                 overscroll-behavior: contain;
