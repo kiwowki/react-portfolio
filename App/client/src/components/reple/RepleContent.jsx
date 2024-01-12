@@ -57,6 +57,7 @@ const RepleContent = (props) => {
                 if (response.data.success) {
                     alert(response.data.message);
                     // window.location.reload();
+                    props.onDeleteSuccess(props.reple._id);
                 } else {
                     console.log(response.data);
                     const errorMessage =

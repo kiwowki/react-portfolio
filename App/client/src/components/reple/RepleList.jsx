@@ -23,6 +23,13 @@ const RepleList = () => {
         onUpdateRepleList(); // 초기 로딩 시에도 업데이트 수행
     }, [onUpdateRepleList]);
 
+    const handleDeleteSuccess = useCallback((deletedRepleId) => {
+        // 댓글 삭제 성공 시 호출되는 콜백
+        setRepleList((prevRepleList) =>
+            prevRepleList.filter((reple) => reple._id !== deletedRepleId)
+        );
+    }, []);
+
     useEffect(() => {
         // RepleContent가 업데이트 될 때마다 스크롤을 맨 아래로 내림
         const repleListElement = repleListRef.current;
@@ -33,9 +40,13 @@ const RepleList = () => {
 
     return (
         <>
-            <div data-lenis-prevent-wheel ref={repleListRef} className="reple_list">
+            <div
+                data-lenis-prevent-wheel
+                ref={repleListRef}
+                className="reple_list"
+            >
                 {repleList.map((reple, idx) => {
-                    return <RepleContent reple={reple} key={idx} />;
+                    return <RepleContent reple={reple} key={idx} onDeleteSuccess={handleDeleteSuccess} />;
                 })}
             </div>
             <RepleWrite onUpdateRepleList={onUpdateRepleList} />
