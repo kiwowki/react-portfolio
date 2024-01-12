@@ -5,4 +5,8 @@
 /App/client/node_modules
 /App/client/package-lock.json
 
+/App/node_modules
+/App/package-lock.json
+
 .DS_Store
+node_modules
