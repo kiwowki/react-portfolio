@@ -98,6 +98,64 @@ React Native라는 동생 프로젝트를 통해 리액트를 사용하여 iOS �
 
     [Firebase 공식 사이트 바로가기](https://console.firebase.google.com/?hl=ko)
 
+    ### fly.io
+
+1.  fly.io 회원가입 및 카드 등록
+2.  로컬에 fly.io 설치하기(설치 후 한 번 껐다 켜기)
+
+```bash
+iwr https://fly.io/install.ps1 -useb | iex
+```
+
+3.  `flyctl` 치기. 아래와 같이 나오면 제대로 설치된 것
+
+```bash
+PS C:\Users\line\Documents\github\react-portfolio> flyctl
+This is flyctl, the Fly.io command line interface.
+
+Usage:
+  flyctl [flags]
+  flyctl [command]
+
+Here's a few commands to get you started:
+  flyctl launch    Create and configure a new app from source code or a Docker image
+  flyctl status    Show app status
+  flyctl deploy    Deploy Fly applications
+  flyctl logs      View app logs
+  flyctl apps      Manage apps
+  flyctl machine   Manage Fly Machines.
+
+If you need help along the way:
+  Use `fly docs` to open the Fly.io documentation, or visit https://fly.io/docs.
+  Use `fly <command> --help` for more information about a command.
+  Visit https://community.fly.io to get help from the Fly.io community.
+
+For a full list of commands, run `fly help`.
+```
+
+4.  터미널에서 로그인
+
+```bash
+flyctl auth login
+```
+
+5.  app 리스트 확인하기(처음엔 아무것도 안 떠야 정상)
+
+```bash
+flyctl apps list
+
+NAME    OWNER   STATUS  PLATFORM        LATEST DEPLOY
+```
+
+6.  `flyctl launch` 로 시작하기(high risk오류는 트러블슈팅 참고)
+
+    1.  Do you want to tweak these settings before proceeding? 에서 y를 누르면 홈페이지 창이 뜸.
+    2.  region은 한국이 없다. 가장 가까운 도쿄로 선택.
+    3.  나머지는 그대로 두고 confirm 누르기.
+    4.  그러면 fly.toml 등 파일이 몇 가지 생긴다.(안 생긴다면 다시 flyctl launch 쳐보기)
+
+7.  `flyctl deploy` 로 배포하기(배포에 대한 에러는 하단의 트러블슈팅 참고)
+
 <details>
 <summary>Firebase 연동 순서</summary>
    
@@ -211,9 +269,23 @@ input:-internal-autofill-selected {
 </details>
 
 <details>
-<summary>Netlify 배포시 Deploy failed for visualstories 에러</summary>
+<summary>fly.io 관련 트러블슈팅</summary>
 
-해결방법
+-   fly.io 런치 시 high risk 뜨는 오류 해결방법
+
+```bash
+Your account has been marked as high risk. Please go to https://fly.io/high-risk-unlock to verify your account.
+```
+
+해결방법 - 터미널에 나와있는 대로 `https://fly.io/high-risk-unlock`에서 계정을 unlock 해주면 됨. 카드를 선택하라고 나와있는데 언락만으로 결제가 되는 게 아니니 안심.
+
+
+-   failed to fetch an image or build from source 에러
+
+```bash
+Error: failed to fetch an image or build from source: app does not have a Dockerfile or buildpacks configured. See https://fly.io/docs/reference/configuration/#the-build-section
+```
+해결방법 -
 
 </details>
 
@@ -222,14 +294,13 @@ input:-internal-autofill-selected {
 스크롤을 내리다보면 #contact 부분에서 이유를 알 수 없는 버벅임이 발생한다.
 이는 lenis를 끄면 사라지는데 아마 gsap와 lenis의 충돌로 인한 오류로 추청 됨.
 
-해결방법
+해결방법 -
 
 </details>
 
 <details>
 <summary>gsap 사용시 #work 부분에서 종종 적용이 안 되는 에러</summary>
 새로고침 혹은 반응형 체크를 하는 중에 종종 gsap에 설정해놓은 height값(100vh)이 css의 값(300vh)으로 보여 화면이 깨지는 현상이 나타남.
-
 해결방법
 
 </details>
@@ -241,6 +312,7 @@ input:-internal-autofill-selected {
 Git이 이 둘 중 어느 쪽으로 선택할지 혼란이 온 것이다.
 
 해결방법
+
 `git config --global core.autocrlf true` // 시스템 전체에 적용
 ⠀
 `git config core.autocrlf true` // 해당 프로젝트에만 적용
